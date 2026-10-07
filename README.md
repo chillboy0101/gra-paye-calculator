@@ -12,6 +12,10 @@ The shortcode does not change between versions. After an update, existing pages 
 
 Repository: https://github.com/chillboy0101/gra-paye-calculator
 
+Author: GRA IT Department (https://gra.gov.gh)
+
+Maintainer: Carl Quist (https://github.com/chillboy0101)
+
 Official rates: https://gra.gov.gh/domestic-tax/tax-types/paye/
 
 ## What a visitor can do
