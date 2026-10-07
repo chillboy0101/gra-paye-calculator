@@ -1,0 +1,1089 @@
+#gra-paye-calculator{
+  --gra-navy:#001b48;
+  --gra-gold:#f4b000;
+  --gra-light:#f4f6fb;
+  --gra-border:#d6d9e4;
+  --gra-text:#111827;
+  --gra-muted:#6b7280;
+}
+
+ #gra-paye-calculator.gra-paye-standalone{
+   background:#ffffff;
+   box-shadow:0 26px 70px rgba(0,0,0,.18) !important;
+   -webkit-box-shadow:0 26px 70px rgba(0,0,0,.18) !important;
+   -moz-box-shadow:0 26px 70px rgba(0,0,0,.18) !important;
+   padding:0;
+ }
+
+ #gra-paye-calculator.gra-paye-standalone .paye-vat-shell{
+   background:transparent;
+ }
+
+#gra-paye-calculator{
+  overflow-anchor:none;
+  border:0 !important;
+  outline:0 !important;
+  box-shadow:none !important;
+  background:transparent;
+}
+
+ #gra-paye-calculator,
+ #gra-paye-calculator .paye-vat-shell,
+ #gra-paye-calculator .paye-vat-card{
+   border-color:transparent !important;
+   outline:0 !important;
+ }
+
+#gra-paye-calculator:focus,
+#gra-paye-calculator:focus-visible{
+  outline:0 !important;
+}
+
+ #gdlr-core-column-paye .gdlr-core-pbf-background-wrap{
+   border:0 !important;
+   border-width:0 !important;
+   border-style:none !important;
+   border-color:transparent !important;
+ }
+
+ #gdlr-core-column-paye .gdlr-core-text-box-item.gdlr-core-item-pdlr,
+ #gdlr-core-column-paye .gdlr-core-item-pdlr{
+   padding-left:0 !important;
+   padding-right:0 !important;
+ }
+
+ #gdlr-core-column-paye .gdlr-core-pbf-column-content-margin,
+ #gdlr-core-column-paye .gdlr-core-move-up-with-shadow{
+   box-shadow:0 26px 70px rgba(0,0,0,.18) !important;
+   -webkit-box-shadow:0 26px 70px rgba(0,0,0,.18) !important;
+   -moz-box-shadow:0 26px 70px rgba(0,0,0,.18) !important;
+   border:0 !important;
+   outline:0 !important;
+   background:#ffffff !important;
+   border-radius:0 !important;
+   overflow:visible;
+ }
+
+#gra-paye-calculator .paye-vat-shell{
+  border:0 !important;
+  outline:0 !important;
+  box-shadow:none !important;
+  background:transparent;
+}
+
+#gra-paye-calculator .paye-vat-shell:focus,
+#gra-paye-calculator .paye-vat-shell:focus-visible{
+  outline:0 !important;
+}
+
+#gra-paye-calculator *{box-sizing:border-box;}
+
+#gra-paye-calculator .gra-card{
+  background:#fff;
+  border-radius:4px;
+  border:1px solid #e5e7eb;
+  box-shadow:0 2px 4px rgba(15,23,42,.06);
+  padding:20px 22px 22px;
+}
+
+#gra-paye-calculator .paye-vat-shell{
+  max-width:none;
+  margin:0;
+  padding:0;
+  font-family:"Open Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  font-size:17px;
+  line-height:1.6;
+}
+
+#gra-paye-calculator .paye-vat-header{
+  background:#0b2a57;
+  border-radius:0;
+  padding:22px 16px;
+  text-align:center;
+  width:100%;
+  margin:0;
+}
+
+#gra-paye-calculator .paye-vat-header h5{
+  margin:0;
+  color:#fff;
+  font-weight:800;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  font-size:22px;
+}
+
+#gra-paye-calculator .paye-vat-body{padding:22px 18px 30px;}
+
+#gra-paye-calculator .paye-vat-grid{
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
+  gap:32px;
+  align-items:start;
+}
+
+#gra-paye-calculator .paye-vat-col{min-width:0;}
+
+ #gra-paye-calculator .paye-side-widgets{margin-top:22px;}
+
+ #gra-paye-calculator .paye-scan-img{
+   display:block;
+   width:100%;
+   max-width:260px;
+   height:auto;
+   margin:0 auto 14px;
+ }
+
+ #gra-paye-calculator .paye-help-box{
+   color:#3b3b3b;
+   padding:28px 28px 14px;
+   border:2px solid #313787;
+   max-width:320px;
+   margin:0 auto;
+   background:#fff;
+ }
+
+ #gra-paye-calculator .paye-help-title{
+   margin:0 0 10px;
+   color:#3e4494;
+   font-size:20px;
+   font-weight:700;
+ }
+
+ #gra-paye-calculator .paye-help-text{
+   margin:0 0 14px;
+   color:#4b5563;
+   font-size:14px;
+   line-height:1.5;
+ }
+
+ #gra-paye-calculator .paye-help-links{font-size:16px;}
+
+ #gra-paye-calculator .paye-help-link{
+   display:flex;
+   align-items:center;
+   gap:10px;
+   margin:0 0 10px;
+ }
+
+ #gra-paye-calculator .paye-help-link i{color:#fad02e;font-size:16px;}
+ #gra-paye-calculator .paye-help-link a{color:#3e4494;text-decoration:none;}
+ #gra-paye-calculator .paye-help-link a:hover{text-decoration:underline;}
+
+ #paye-side-widgets-sidebar #paye-side-widgets{
+   margin-top:0;
+ }
+
+ #paye-side-widgets-sidebar #paye-side-widgets .paye-scan-img{
+   max-width:none;
+   margin-left:0;
+   margin-right:0;
+ }
+
+ #paye-side-widgets-sidebar #paye-side-widgets .paye-help-box{
+   max-width:none;
+   margin-left:0;
+   margin-right:0;
+ }
+
+/* Hard reset inside the PAYE VAT shell to prevent theme borders/outlines */
+#gra-paye-calculator .paye-vat-shell,
+#gra-paye-calculator .paye-vat-shell *{
+  outline:0 !important;
+  box-shadow:none;
+}
+
+/* No hover/focus animations (VAT calculator does not animate) */
+#gra-paye-calculator .paye-vat-shell *{
+  transition:none !important;
+  animation:none !important;
+}
+
+#gra-paye-calculator .paye-vat-shell *{
+  border-style:none;
+  border-width:0;
+}
+
+/* Buttons must be borderless like VAT (override later shared button rules) */
+#gra-paye-calculator .paye-vat-shell .gra-btn-primary,
+#gra-paye-calculator .paye-vat-shell .gra-btn-secondary,
+#gra-paye-calculator .paye-vat-shell .paye-vat-btn,
+#gra-paye-calculator .paye-vat-shell .paye-vat-btn-secondary{
+  border:0 !important;
+  outline:0 !important;
+  box-shadow:none !important;
+}
+
+#gra-paye-calculator .paye-vat-card{
+  background:#fff;
+  border:0 !important;
+  border-radius:2px;
+  box-shadow:-1px 12px 32px -14px rgba(0,0,0,.38) !important;
+  padding:26px 26px 22px;
+  min-height:0;
+  font-size:15px;
+}
+
+ #gra-paye-calculator iframe{
+   border:0 !important;
+   outline:0 !important;
+   box-shadow:none !important;
+ }
+
+/* Ensure tables never show borders inside the VAT shell */
+#gra-paye-calculator .paye-vat-shell table,
+#gra-paye-calculator .paye-vat-shell thead,
+#gra-paye-calculator .paye-vat-shell tbody,
+#gra-paye-calculator .paye-vat-shell tr,
+#gra-paye-calculator .paye-vat-shell th,
+#gra-paye-calculator .paye-vat-shell td{
+  border:0 !important;
+  outline:0 !important;
+}
+
+#gra-paye-calculator .paye-vat-header{border:0 !important;}
+
+#gra-paye-calculator .paye-vat-card *{
+  border-color:transparent;
+}
+
+#gra-paye-calculator .paye-vat-section-title{
+  margin:0;
+  text-align:center;
+  color:#1f2937;
+  font-weight:700;
+  font-size:18px;
+  padding:8px 0 12px;
+  border-bottom:1px solid #e6e6e6;
+  margin-bottom:14px;
+}
+
+/* VAT-like typography inside cards */
+#gra-paye-calculator .paye-vat-card{
+  color:#111827;
+}
+
+#gra-paye-calculator .paye-vat-card .gra-field{gap:8px;}
+
+#gra-paye-calculator .paye-vat-card .gra-label{
+  display:block;
+  font-size:19px;
+  line-height:1.5;
+  font-weight:700;
+  color:#1f2937;
+}
+
+#gra-paye-calculator .paye-vat-card .gra-hint{
+  font-size:18px;
+  line-height:1.6;
+  color:#6b7280;
+}
+
+#gra-paye-calculator .paye-vat-card label{
+  color:#374151;
+  font-size:19px;
+  line-height:1.6;
+  font-weight:500;
+}
+
+#gra-paye-calculator .paye-vat-card .paye-type-option{
+  color:#374151;
+  font-size:19px;
+  line-height:1.5;
+}
+
+#gra-paye-calculator .paye-vat-card .gra-error{font-size:14px;}
+
+#gra-paye-calculator .paye-vat-card .paye-result-label{
+  font-size:17px;
+  font-weight:800;
+  color:#111827;
+  letter-spacing:.02em;
+}
+
+#gra-paye-calculator .paye-vat-card .paye-result-value{
+  font-size:18px;
+  font-weight:800;
+  color:#111827;
+}
+
+#gra-paye-calculator .paye-vat-card hr,
+#gra-paye-calculator .paye-field-divider{
+  margin:12px 0 18px;
+  border:0;
+  border-top:0;
+}
+
+#gra-paye-calculator .paye-vat-shell hr{border:0 !important;}
+
+/* Force VAT-like inputs everywhere inside the VAT shell (prevents dark borders) */
+#gra-paye-calculator .paye-vat-card .gra-input-wrap{
+  border:0;
+  border-radius:0;
+  overflow:visible;
+  background:#f4f4f4;
+  border-bottom:3px solid #d7d7d7;
+  box-shadow:none !important;
+}
+
+ #gra-paye-calculator .paye-vat-shell .gra-input-wrap{
+   border:0;
+   border-radius:0;
+   overflow:visible;
+   background:#f4f4f4;
+   border-bottom:3px solid #d7d7d7;
+   box-shadow:none !important;
+ }
+
+ #gra-paye-calculator .paye-vat-shell .gra-input-prefix{
+   background:transparent;
+   border-right:0;
+   color:#2d3748;
+   font-size:18px;
+   padding-left:20px;
+   white-space:nowrap;
+   flex:0 0 auto;
+   min-width:3.5ch;
+ }
+
+ #gra-paye-calculator .paye-vat-shell .gra-input{
+   background:transparent;
+   font-size:20px;
+   padding:14px 16px 14px 10px;
+ }
+
+#gra-paye-calculator .paye-vat-card .gra-input-prefix{
+  background:transparent;
+  border-right:0;
+  color:#2d3748;
+  font-size:16px;
+  padding-left:20px;
+  white-space:nowrap;
+  flex:0 0 auto;
+  min-width:3.5ch;
+}
+
+#gra-paye-calculator .paye-vat-card .gra-input{
+  background:transparent;
+  font-size:20px;
+  padding:14px 16px 14px 10px;
+}
+
+#gra-paye-calculator .paye-vat-card .gra-input:focus{outline:none;}
+
+ #gra-paye-calculator .paye-vat-card .gra-input-wrap:hover{
+   border-bottom-color:#313787;
+   border-bottom-width:3px;
+ }
+
+ #gra-paye-calculator .paye-vat-card .gra-input-wrap:focus-within{
+   border-bottom-color:#313787;
+   border-bottom-width:3px;
+   background:#f7f7f7;
+ }
+
+ #gra-paye-calculator .paye-vat-shell .gra-input-wrap:hover{
+   border-bottom-color:#313787;
+   border-bottom-width:3px;
+ }
+
+ #gra-paye-calculator .paye-vat-shell .gra-input-wrap:focus-within{
+   border-bottom-color:#313787;
+   border-bottom-width:3px;
+   background:#f7f7f7;
+ }
+
+/* PAYE type + relief checkboxes with blue border styling */
+#gra-paye-calculator .paye-vat-card input[type="checkbox"]{
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  width:28px;
+  height:28px;
+  border:2.5px solid #3740b0;
+  border-radius:4px;
+  background:#ffffff;
+  cursor:pointer;
+  position:relative;
+  flex-shrink:0;
+  transition:all 0.2s ease;
+}
+
+#gra-paye-calculator .paye-vat-card input[type="checkbox"]:hover{
+  border-color:#30336B;
+  background:#f8f9ff;
+  box-shadow:0 0 0 3px rgba(55, 64, 176, 0.1);
+}
+
+#gra-paye-calculator .paye-vat-card input[type="checkbox"]:checked{
+  background:#3740b0;
+  border-color:#3740b0;
+}
+
+#gra-paye-calculator .paye-vat-card input[type="checkbox"]:checked::after{
+  content:"✓";
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  color:#ffffff;
+  font-size:18px;
+  font-weight:bold;
+  line-height:1;
+}
+
+#gra-paye-calculator .paye-vat-card input[type="radio"]{
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  width:24px;
+  height:24px;
+  border:2.5px solid #3740b0;
+  border-radius:50%;
+  background:#ffffff;
+  cursor:pointer;
+  position:relative;
+  flex-shrink:0;
+  transition:all 0.2s ease;
+  outline:none;
+}
+
+#gra-paye-calculator .paye-vat-card input[type="radio"]:hover{
+  border-color:#30336B;
+  background:#f8f9ff;
+  box-shadow:0 0 0 3px rgba(55, 64, 176, 0.1);
+}
+
+#gra-paye-calculator .paye-vat-card input[type="radio"]:checked{
+  border-color:#3740b0;
+  background:#ffffff;
+}
+
+#gra-paye-calculator .paye-vat-card input[type="radio"]:checked::after{
+  content:"";
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:#3740b0;
+}
+
+#gra-paye-calculator .paye-type-toggle{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+#gra-paye-calculator .paye-type-toggle label{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+}
+
+#gra-paye-calculator .paye-type-toggle input[type="radio"]{
+  margin:0;
+  width:24px;
+  height:24px;
+  flex:0 0 24px;
+  transform: translateY(0);
+}
+
+#gra-paye-calculator .paye-type-toggle .paye-type-option{
+  display:inline-block;
+  line-height:1.6;
+  font-size:17px;
+  color:#374151;
+  font-weight:500;
+}
+
+#gra-paye-calculator .gra-main-panel{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+#gra-paye-calculator .paye-tool-header{
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.12em;
+  color:var(--gra-navy);
+  border-bottom:1px solid #e5e7eb;
+  padding-bottom:10px;
+  margin-bottom:12px;
+}
+
+#gra-paye-calculator .paye-tool-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:18px;
+}
+
+#gra-paye-calculator .paye-panel-title{
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  font-size:13px;
+  margin-bottom:12px;
+  color:var(--gra-navy);
+}
+
+#gra-paye-calculator .gra-field{margin-bottom:14px;}
+
+#gra-paye-calculator .gra-label{
+  display:block;
+  font-size:12px;
+  font-weight:700;
+  color:#111827;
+}
+
+#gra-paye-calculator .gra-input-wrap{
+  display:flex;
+  align-items:stretch;
+  border:1px solid #e5e7eb;
+  border-radius:6px;
+  overflow:hidden;
+  background:#fff;
+}
+
+/* VAT-like input rows */
+#gra-paye-calculator .paye-vat-input{
+  border:0;
+  border-radius:0;
+  overflow:visible;
+  background:#f4f4f4;
+  border-bottom:3px solid #d7d7d7;
+}
+
+#gra-paye-calculator .paye-vat-input .gra-input-prefix{
+  background:transparent;
+  border-right:0;
+  color:#2d3748;
+  font-size:16px;
+  padding-left:20px;
+  white-space:nowrap;
+  flex:0 0 auto;
+  min-width:3.5ch;
+}
+
+#gra-paye-calculator .paye-vat-input .gra-input{
+  background:transparent;
+  font-size:20px;
+  padding:14px 16px 14px 10px;
+}
+
+#gra-paye-calculator .paye-vat-input:focus-within{border-bottom-color:#bfc7d1;}
+
+#gra-paye-calculator .gra-input-prefix{
+  display:inline-flex;
+  align-items:center;
+  padding:0 10px;
+  font-size:12px;
+  color:#374151;
+  background:#f3f4f6;
+  border-right:1px solid #e5e7eb;
+  white-space:nowrap;
+  flex:0 0 auto;
+}
+
+#gra-paye-calculator .gra-input{
+  width:100%;
+  border:0;
+  padding:10px 12px;
+  font-size:14px;
+  outline:none;
+}
+
+#gra-paye-calculator .gra-hint{
+  display:block;
+  font-size:15px;
+  line-height:1.5;
+  color:#6b7280;
+  margin-top:4px !important;
+}
+
+#gra-paye-calculator .gra-error{
+  display:none;
+  margin-top:8px;
+  font-size:12px;
+  color:#b91c1c;
+}
+
+#gra-paye-calculator .gra-error.is-visible{display:block;}
+
+#gra-paye-calculator .gra-actions{display:flex;gap:10px;margin-top:8px;}
+
+#gra-paye-calculator .gra-btn-primary,
+#gra-paye-calculator .gra-btn-secondary{
+  appearance:none;
+  border-radius:6px;
+  border:1px solid transparent;
+  padding:10px 12px;
+  font-weight:800;
+  cursor:pointer;
+  font-size:13px;
+}
+
+#gra-paye-calculator .gra-btn-primary{
+  background:var(--gra-navy);
+  color:#fff;
+}
+
+/* VAT-like teal button */
+#gra-paye-calculator .paye-vat-btn{
+  background:#1aa3b1;
+  border:0;
+  border-radius:3px;
+  height:52px;
+  font-size:18px;
+  font-weight:600;
+}
+
+#gra-paye-calculator .paye-vat-btn:hover{background:#1aa3b1;}
+
+#gra-paye-calculator .gra-btn-primary:hover{background:var(--gra-navy);}
+#gra-paye-calculator .gra-btn-secondary:hover{background:#ffffff;}
+
+#gra-paye-calculator .paye-vat-btn-secondary{
+  border-radius:3px;
+}
+
+#gra-paye-calculator .paye-vat-btn-secondary{
+  border-color:transparent;
+}
+
+ #gra-paye-calculator .paye-vat-shell .gra-btn-secondary{
+   border:0 !important;
+   box-shadow:none !important;
+ }
+
+ #gra-paye-calculator .paye-vat-shell #resetBtn,
+ #gra-paye-calculator .paye-vat-shell #breakdownToggleBtn{
+   display:inline-flex;
+   align-items:center;
+   justify-content:center;
+   width:100%;
+   min-height:46px;
+   padding:10px 14px;
+   border-radius:3px;
+   border:1px solid #cbd5e1 !important;
+   background:#f3f4f6;
+   color:#111827;
+   font-size:16px;
+   font-weight:600;
+ }
+
+ #gra-paye-calculator .paye-vat-shell #resetBtn:hover,
+ #gra-paye-calculator .paye-vat-shell #breakdownToggleBtn:hover{
+   background:#eef2f7;
+ }
+
+#gra-paye-calculator .gra-btn-primary:hover{background:var(--gra-navy);}
+
+#gra-paye-calculator .gra-btn-secondary{
+  background:#ffffff;
+  border-color:#cbd5e1;
+  color:#1f2937;
+}
+
+#gra-paye-calculator .gra-btn-secondary:hover{background:#ffffff;}
+
+/* Final lock: absolutely no hover/focus animations or style shifts in the PAYE VAT shell */
+#gra-paye-calculator .paye-vat-shell button:hover,
+#gra-paye-calculator .paye-vat-shell button:focus,
+#gra-paye-calculator .paye-vat-shell button:focus-visible,
+#gra-paye-calculator .paye-vat-shell input:hover,
+#gra-paye-calculator .paye-vat-shell input:focus,
+#gra-paye-calculator .paye-vat-shell input:focus-visible,
+#gra-paye-calculator .paye-vat-shell label:hover,
+#gra-paye-calculator .paye-vat-shell .gra-brackets-row:hover,
+#gra-paye-calculator .paye-vat-shell .gra-brackets-head:hover{
+  transform:none !important;
+  filter:none !important;
+}
+
+#gra-paye-calculator .gra-results{margin-top:12px;}
+
+#gra-paye-calculator .is-hidden{display:none !important;}
+
+#gra-paye-calculator .paye-result-line{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+  padding:8px 0;
+  border-bottom:0;
+}
+
+ #gra-paye-calculator #resultTaxMonthlyRow:not(.is-hidden){
+   margin-top:12px;
+   padding-top:12px;
+   border-top:1px solid #cbd5e1;
+ }
+
+#gra-paye-calculator .paye-result-line:last-child{border-bottom:none;}
+
+ #gra-paye-calculator .paye-vat-card .table-wrapper{
+   margin:10px 0 0;
+   overflow:visible;
+   width:100%;
+ }
+
+ #gra-paye-calculator .table-wrapper{
+   overflow:visible;
+   width:100%;
+   max-width:100%;
+ }
+
+ #gra-paye-calculator .fl-table{
+   width:100%;
+   max-width:100%;
+   table-layout:fixed;
+   border-collapse:separate;
+   border-spacing:0;
+ }
+
+ #gra-paye-calculator .fl-table th,
+ #gra-paye-calculator .fl-table td{
+   padding:16px 8px;
+   font-size:15px;
+   word-break:break-word;
+   white-space:normal;
+   overflow-wrap:break-word;
+   hyphens:auto;
+   color:#1f2937;
+   border:1px solid #cbd5e1;
+ }
+
+ #gra-paye-calculator .fl-table td{
+   font-weight:700;
+   color:#111827;
+ }
+
+ #gra-paye-calculator .fl-table thead th{
+   font-size:14px;
+   line-height:1.3;
+   padding:16px 8px;
+   font-weight:800;
+   color:#ffffff;
+ }
+
+ #gra-paye-calculator .fl-table thead th:nth-child(odd){
+   background:#30336B !important;
+ }
+
+ #gra-paye-calculator .fl-table thead th:nth-child(even){
+   background:#487EB0 !important;
+ }
+
+#gra-paye-calculator .paye-result-label{font-size:16px;font-weight:800;color:#111827;}
+#gra-paye-calculator .paye-result-value{font-size:18px;font-weight:800;color:#001b48;}
+
+#gra-paye-calculator .gra-brackets-table{border:1px solid #e5e7eb;border-radius:6px;overflow:hidden;}
+
+/* Make PAYE bands look closer to VAT output rows */
+#gra-paye-calculator .paye-vat-card .gra-brackets-table{border:0 !important;border-radius:0 !important;overflow:visible;box-shadow:none;}
+
+#gra-paye-calculator .paye-vat-card .gra-brackets-head,
+#gra-paye-calculator .paye-vat-card .gra-brackets-row{
+  background:#f3f3f3;
+  border:0;
+  border-top:0;
+  border-bottom:0;
+  padding:16px 18px;
+}
+
+ #gra-paye-calculator .paye-vat-card .gra-brackets-row:nth-child(even){
+   background:#f3f3f3;
+ }
+
+ #gra-paye-calculator .paye-vat-card .gra-brackets-row:nth-child(odd){
+   background:#f3f3f3;
+ }
+
+ #gra-paye-calculator .paye-vat-card .gra-brackets-head{margin-bottom:12px;}
+
+ #gra-paye-calculator .paye-vat-card .gra-brackets-row{border-top:12px solid #ffffff;}
+
+#gra-paye-calculator .paye-vat-card .gra-brackets-head,
+#gra-paye-calculator .paye-vat-card .gra-brackets-row{
+  border-radius:0;
+  box-shadow:none;
+}
+
+#gra-paye-calculator .paye-vat-card .gra-brackets-head{margin-top:16px;}
+
+#gra-paye-calculator .paye-vat-card .gra-brackets-row{font-size:13px;}
+
+#gra-paye-calculator .paye-vat-card .gra-brackets-head{font-size:14px;}
+
+@media (max-width: 900px){
+  #gra-paye-calculator .paye-vat-grid{
+    grid-template-columns:minmax(0, 1fr);
+    gap:22px;
+  }
+  #gra-paye-calculator .paye-vat-col{min-width:0;}
+
+  #gra-paye-calculator .paye-scan-img{max-width:320px;}
+  #gra-paye-calculator .paye-help-box{max-width:360px;}
+
+  #gra-paye-calculator .gra-brackets-head,
+  #gra-paye-calculator .gra-brackets-row{
+    grid-template-columns:1.6fr .6fr 1fr 1.1fr 1.1fr;
+  }
+
+  #gra-paye-calculator .gra-brackets-head{
+    font-size:11px;
+    padding:12px 12px;
+  }
+}
+
+/* Mobile optimization for phones */
+@media (max-width: 767px){
+  /* Reduce card padding on mobile */
+  #gra-paye-calculator .paye-vat-card{
+    padding:18px 14px 18px;
+  }
+
+  #gra-paye-calculator .paye-vat-body{
+    padding:16px 12px 20px;
+  }
+
+  /* Smaller header text */
+  #gra-paye-calculator .paye-vat-header h5{
+    font-size:18px;
+  }
+
+  /* Adjust input sizing for mobile */
+  #gra-paye-calculator .paye-vat-shell .gra-input{
+    font-size:18px;
+    padding:12px 14px 12px 8px;
+  }
+
+  #gra-paye-calculator .paye-vat-shell .gra-input-prefix{
+    font-size:14px;
+    padding-left:14px;
+  }
+
+  /* Make buttons full width and properly sized */
+  #gra-paye-calculator .paye-vat-shell #resetBtn,
+  #gra-paye-calculator .paye-vat-shell #breakdownToggleBtn{
+    width:100%;
+    min-height:44px;
+    font-size:15px;
+    padding:10px 12px;
+  }
+
+  #gra-paye-calculator .paye-vat-btn{
+    height:48px;
+    font-size:16px;
+  }
+
+  /* Optimize result display */
+  #gra-paye-calculator .paye-result-line{
+    padding:6px 0;
+  }
+
+  #gra-paye-calculator .paye-vat-card .paye-result-label{
+    font-size:14px;
+  }
+
+  #gra-paye-calculator .paye-vat-card .paye-result-value{
+    font-size:15px;
+  }
+
+  /* Table wrapper without scrollbars */
+  #gra-paye-calculator .table-wrapper{
+    overflow:visible;
+    margin:10px 0 0;
+  }
+
+  /* Ensure fl-table displays properly on mobile without scrollbars */
+  #gra-paye-calculator .fl-table{
+    width:100%;
+    max-width:100%;
+    table-layout:fixed;
+    font-size:14px;
+  }
+
+  #gra-paye-calculator .fl-table th,
+  #gra-paye-calculator .fl-table td{
+    padding:12px 6px;
+    font-size:14px;
+    word-break:break-word;
+    white-space:normal;
+    overflow-wrap:break-word;
+    line-height:1.3;
+  }
+
+  #gra-paye-calculator .fl-table thead th{
+    font-size:13px;
+    padding:12px 6px;
+    line-height:1.2;
+  }
+
+  /* Help box adjustments */
+  #gra-paye-calculator .paye-help-box{
+    padding:20px 18px 12px;
+    max-width:100%;
+  }
+
+  #gra-paye-calculator .paye-help-title{
+    font-size:18px;
+  }
+
+  #gra-paye-calculator .paye-help-text{
+    font-size:14px;
+  }
+
+  /* Modal adjustments for mobile */
+  #gra-paye-calculator .gra-modal-backdrop{
+    padding:16px;
+  }
+
+  #gra-paye-calculator .gra-modal-body{
+    font-size:14px;
+    padding:16px 14px;
+  }
+
+  /* Section title */
+  #gra-paye-calculator .paye-vat-section-title{
+    font-size:16px;
+    padding:6px 0 10px;
+  }
+
+  /* Type toggle for mobile */
+  #gra-paye-calculator .paye-type-toggle{
+    gap:12px;
+  }
+
+  #gra-paye-calculator .paye-vat-card .paye-type-option{
+    font-size:16px;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 480px){
+  #gra-paye-calculator .paye-vat-card{
+    padding:14px 10px 14px;
+  }
+
+  #gra-paye-calculator .paye-vat-body{
+    padding:14px 10px 16px;
+  }
+
+  #gra-paye-calculator .paye-vat-header h5{
+    font-size:16px;
+  }
+
+  #gra-paye-calculator .table-wrapper{
+    margin:10px 0 0;
+  }
+
+  #gra-paye-calculator .fl-table th,
+  #gra-paye-calculator .fl-table td{
+    padding:10px 5px;
+    font-size:13px;
+    line-height:1.2;
+  }
+
+  #gra-paye-calculator .fl-table thead th{
+    font-size:12px;
+    padding:10px 4px;
+    line-height:1.1;
+  }
+
+  #gra-paye-calculator .paye-vat-shell #resetBtn,
+  #gra-paye-calculator .paye-vat-shell #breakdownToggleBtn{
+    font-size:14px;
+    min-height:42px;
+  }
+}
+#gra-paye-calculator .gra-brackets-head{
+  display:grid;
+  grid-template-columns:1.4fr .7fr 1fr 1fr 1fr;
+  background:#f8fafc;
+  padding:10px 12px;
+  font-size:12px;
+  font-weight:800;
+  color:#111827;
+}
+
+ #gra-paye-calculator .gra-brackets-head > div{
+   white-space:normal;
+   word-break:normal;
+   overflow-wrap:break-word;
+   hyphens:none;
+   line-height:1.25;
+ }
+
+#gra-paye-calculator .gra-brackets-row{
+  display:grid;
+  grid-template-columns:1.4fr .7fr 1fr 1fr 1fr;
+  padding:10px 12px;
+  border-top:1px solid #f1f1f4;
+  font-size:12px;
+}
+
+#gra-paye-calculator .paye-breakdown-head{
+  display:grid;
+  grid-template-columns:1.2fr .7fr 1fr 1fr 1fr;
+  background:#f8fafc;
+  padding:10px 12px;
+  font-size:12px;
+  font-weight:800;
+}
+
+#gra-paye-calculator .paye-breakdown-row{
+  display:grid;
+  grid-template-columns:1.2fr .7fr 1fr 1fr 1fr;
+  padding:10px 12px;
+  border-top:1px solid #eef2f7;
+  font-size:12px;
+}
+
+#gra-paye-calculator .gra-modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  z-index:99999;
+}
+
+#gra-paye-calculator .gra-modal-backdrop.is-visible{display:flex;}
+
+#gra-paye-calculator .gra-modal{
+  width:min(520px, 100%);
+  background:#fff;
+  border-radius:10px;
+  border:1px solid #e5e7eb;
+  overflow:hidden;
+}
+
+#gra-paye-calculator .gra-modal-title{
+  padding:12px 16px;
+  font-weight:800;
+  background:#f8fafc;
+  border-bottom:1px solid #e5e7eb;
+}
+
+#gra-paye-calculator .gra-modal-body{padding:14px 16px;color:#111827;font-size:13px;line-height:1.5;}
+
+#gra-paye-calculator .gra-modal-actions{display:flex;gap:10px;justify-content:flex-end;padding:12px 16px;border-top:1px solid #e5e7eb;}
+
+#gra-paye-calculator .gra-modal-btn{
+  border-radius:8px;
+  padding:8px 12px;
+  border:1px solid transparent;
+  cursor:pointer;
+  font-weight:800;
+}
+
+#gra-paye-calculator .gra-modal-btn{background:var(--gra-navy);color:#fff;}
+#gra-paye-calculator .gra-modal-btn-secondary{background:#fff;border-color:#cbd5e1;color:#111827;}
