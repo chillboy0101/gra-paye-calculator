@@ -5,6 +5,9 @@ set -euo pipefail
 
 root="$(cd "$(dirname "$0")" && pwd)"
 out="${1:-$root/dist/gra-paye-calculator.zip}"
+if [[ "$out" != /* ]]; then
+  out="$(cd "$(dirname "$out")" && pwd)/$(basename "$out")"
+fi
 stage="$(mktemp -d)"
 trap 'rm -rf "$stage"' EXIT
 
