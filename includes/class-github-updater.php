@@ -75,7 +75,7 @@ class GRA_PAYE_GitHub_Updater {
 
     private function latest_release() {
         $cached = get_site_transient(self::CACHE_KEY);
-        if (is_array($cached) && !empty($cached['package'])) {
+        if (is_array($cached) && self::is_trusted_release($cached)) {
             return $cached;
         }
 
@@ -99,27 +99,50 @@ class GRA_PAYE_GitHub_Updater {
             return null;
         }
 
-        $package = '';
+        if (!preg_match('/^v(\d+\.\d+\.\d+)$/', (string) $body['tag_name'], $matches)) {
+            return null;
+        }
+
+        $version = $matches[1];
+        $package = self::package_url($version);
+        $found = false;
         foreach ($body['assets'] as $asset) {
-            if (!empty($asset['name']) && $asset['name'] === self::ASSET && !empty($asset['browser_download_url'])) {
-                $package = $asset['browser_download_url'];
+            if (!empty($asset['name']) && $asset['name'] === self::ASSET && isset($asset['browser_download_url']) && hash_equals($package, (string) $asset['browser_download_url'])) {
+                $found = true;
                 break;
             }
         }
 
-        if ($package === '') {
+        if (!$found) {
             return null;
         }
 
+        $notes = isset($body['body']) ? (string) $body['body'] : '';
+        if (strlen($notes) > 5000) {
+            $notes = substr($notes, 0, 5000);
+        }
+
         $release = array(
-            'version' => ltrim((string) $body['tag_name'], 'vV'),
-            'url' => !empty($body['html_url']) ? $body['html_url'] : 'https://github.com/' . self::REPO,
+            'version' => $version,
+            'url' => 'https://github.com/' . self::REPO . '/releases/tag/v' . $version,
             'package' => $package,
-            'notes' => isset($body['body']) ? (string) $body['body'] : '',
+            'notes' => $notes,
         );
 
         set_site_transient(self::CACHE_KEY, $release, self::CACHE_TTL);
 
         return $release;
+    }
+
+    private static function package_url($version) {
+        return 'https://github.com/' . self::REPO . '/releases/download/v' . $version . '/' . self::ASSET;
+    }
+
+    private static function is_trusted_release($release) {
+        if (empty($release['version']) || empty($release['package']) || !preg_match('/^\d+\.\d+\.\d+$/', $release['version'])) {
+            return false;
+        }
+
+        return hash_equals(self::package_url($release['version']), (string) $release['package']);
     }
 }
