@@ -421,25 +421,59 @@
   const RELIEF_AGED_DEPENDENT_PER_RELATIVE_ANNUAL = 1000;
   const RELIEF_EDUCATIONAL_ANNUAL = 2000;
 
+  function toCents(value) {
+    if (!isFinite(value)) return 0;
+    return Math.round(Number(value) * 100);
+  }
+
+  function fromCents(cents) {
+    return cents / 100;
+  }
+
+  function sliceTaxCents(amountCents, ratePercent) {
+    const rateBp = Math.round(ratePercent * 100);
+    return Math.round((amountCents * rateBp) / 10000);
+  }
+
+  function calculateTaxCents(chargeableIncomeCents, bands, topRatePercent) {
+    if (chargeableIncomeCents <= 0 || !isFinite(chargeableIncomeCents)) return 0;
+
+    let remaining = chargeableIncomeCents;
+    let taxCents = 0;
+
+    for (let i = 0; i < bands.length; i++) {
+      if (remaining <= 0) break;
+      const take = Math.min(remaining, toCents(bands[i].amount));
+      taxCents += sliceTaxCents(take, bands[i].rate);
+      remaining -= take;
+    }
+
+    if (remaining > 0) {
+      taxCents += sliceTaxCents(remaining, topRatePercent);
+    }
+
+    return taxCents;
+  }
+
   function buildPayeCumulativeTable(bands) {
     const table = [];
-    let cumulativeIncome = 0;
-    let cumulativeTax = 0;
+    let cumulativeIncomeCents = 0;
+    let cumulativeTaxCents = 0;
 
     for (let i = 0; i < bands.length; i++) {
       const band = bands[i];
-      const incomeInBand = band.amount;
-      const taxOnBand = incomeInBand * (band.rate / 100);
+      const widthCents = toCents(band.amount);
+      const taxCents = sliceTaxCents(widthCents, band.rate);
 
-      cumulativeIncome += incomeInBand;
-      cumulativeTax += taxOnBand;
+      cumulativeIncomeCents += widthCents;
+      cumulativeTaxCents += taxCents;
 
       table.push({
-        chargeableIncome: incomeInBand,
+        chargeableIncome: fromCents(widthCents),
         rate: band.rate,
-        taxPayable: taxOnBand,
-        cumulativeIncome,
-        cumulativeTax,
+        taxPayable: fromCents(taxCents),
+        cumulativeIncome: fromCents(cumulativeIncomeCents),
+        cumulativeTax: fromCents(cumulativeTaxCents),
       });
     }
 
@@ -708,82 +742,43 @@
   }
 
   function calculateAnnualPaye(annualChargeableIncome, bands, topRatePercent) {
-    if (annualChargeableIncome <= 0 || !isFinite(annualChargeableIncome)) {
-      return 0;
-    }
-
-    let remaining = annualChargeableIncome;
-    let lastLimit = 0;
-    let tax = 0;
-
-    for (let i = 0; i < bands.length; i++) {
-      const band = bands[i];
-      const bandCap = lastLimit + band.amount;
-      const bandRate = band.rate / 100;
-
-      if (remaining <= 0) break;
-
-      const bandWidth = bandCap - lastLimit;
-      const taxableInBand = Math.min(remaining, bandWidth);
-
-      if (taxableInBand > 0) {
-        tax += taxableInBand * bandRate;
-        remaining -= taxableInBand;
-      }
-
-      lastLimit = bandCap;
-    }
-
-    if (remaining > 0) {
-      const topRate = topRatePercent / 100;
-      tax += remaining * topRate;
-    }
-
-    return tax;
+    return fromCents(calculateTaxCents(toCents(annualChargeableIncome), bands, topRatePercent));
   }
 
   function buildBreakdownRows(chargeableIncome, bands, topRatePercent) {
     const rows = [];
-    let remaining = chargeableIncome;
-    let lastLimit = 0;
-    let cumulativeTax = 0;
+    let remaining = toCents(chargeableIncome);
+    let cumulativeTaxCents = 0;
 
     for (let i = 0; i < bands.length; i++) {
-      const band = bands[i];
-      const bandCap = lastLimit + band.amount;
-      const bandRate = band.rate / 100;
-
       if (remaining <= 0) break;
 
-      const bandWidth = bandCap - lastLimit;
-      const taxableInBand = Math.min(remaining, bandWidth);
-      const taxOnBand = taxableInBand * bandRate;
+      const band = bands[i];
+      const take = Math.min(remaining, toCents(band.amount));
+      const taxOnBandCents = sliceTaxCents(take, band.rate);
 
-      cumulativeTax += taxOnBand;
-      remaining -= taxableInBand;
+      cumulativeTaxCents += taxOnBandCents;
+      remaining -= take;
 
       rows.push({
         index: i,
-        taxableAmount: taxableInBand,
+        taxableAmount: fromCents(take),
         rate: band.rate,
-        taxOnBand,
-        cumulativeTax,
+        taxOnBand: fromCents(taxOnBandCents),
+        cumulativeTax: fromCents(cumulativeTaxCents),
       });
-
-      lastLimit = bandCap;
     }
 
     if (remaining > 0) {
-      const topRate = topRatePercent / 100;
-      const taxOnBand = remaining * topRate;
-      cumulativeTax += taxOnBand;
+      const taxOnBandCents = sliceTaxCents(remaining, topRatePercent);
+      cumulativeTaxCents += taxOnBandCents;
 
       rows.push({
         index: bands.length,
-        taxableAmount: remaining,
+        taxableAmount: fromCents(remaining),
         rate: topRatePercent,
-        taxOnBand,
-        cumulativeTax,
+        taxOnBand: fromCents(taxOnBandCents),
+        cumulativeTax: fromCents(cumulativeTaxCents),
         isExcess: true,
       });
     }
@@ -995,11 +990,22 @@
       });
     }
 
+    cases.push({
+      name: 'Monthly 588.30 rounds the 5% slice to 0.02',
+      actual: calculateAnnualPaye(588.3, EMPLOYEE_PAYE_BANDS_2026, 35),
+      expected: 0.02,
+    });
+    cases.push({
+      name: 'Annual 7059.60 rounds the 5% slice to 0.18',
+      actual: calculateAnnualPaye(7059.6, EMPLOYEE_PAYE_BANDS_2026_ANNUAL, 35),
+      expected: 0.18,
+    });
+
     let passed = 0;
     let failed = 0;
     for (let i = 0; i < cases.length; i++) {
       const c = cases[i];
-      const ok = approxEqual(c.actual, c.expected, 0.02);
+      const ok = approxEqual(c.actual, c.expected, 0.001);
       if (ok) {
         passed += 1;
       } else {
@@ -1008,11 +1014,10 @@
       }
     }
 
-    if (failed === 0) {
-      console.log('[PAYE selftest] PASS:', passed, 'cases');
-    } else {
-      console.warn('[PAYE selftest] DONE:', { passed, failed });
-    }
+    const note = document.createElement('p');
+    note.id = 'paye-selftest';
+    note.textContent = failed === 0 ? 'PAYE selftest PASS ' + passed : 'PAYE selftest FAIL ' + failed;
+    if (document.body) document.body.appendChild(note);
   }
 
   if (form) {
