@@ -40,9 +40,10 @@ class GRA_PAYE_GitHub_Updater {
         return array(
             'slug' => $this->slug,
             'version' => $release['version'],
-            'url' => $release['url'],
+            'url' => 'https://github.com/' . self::REPO,
             'package' => $release['package'],
-            'tested' => '7.1',
+            'tested' => '7.1.3',
+            'requires' => '6.0',
             'requires_php' => '7.4',
         );
     }
@@ -57,18 +58,22 @@ class GRA_PAYE_GitHub_Updater {
             return $result;
         }
 
+        $changelog = trim($release['notes']) !== '' ? $release['notes'] : 'See the releases page on the plugin homepage.';
+
         return (object) array(
             'name' => 'GRA PAYE Calculator',
             'slug' => $this->slug,
             'version' => $release['version'],
-            'author' => 'GRA IT Department',
-            'homepage' => 'https://gra.gov.gh/domestic-tax/tax-types/paye/',
+            'author' => '<a href="https://gra.gov.gh">GRA IT Department</a>',
+            'homepage' => 'https://github.com/' . self::REPO,
             'download_link' => $release['package'],
+            'requires' => '6.0',
             'requires_php' => '7.4',
-            'tested' => '7.1',
+            'tested' => '7.1.3',
             'sections' => array(
-                'description' => 'Pay As You Earn calculator for the Ghana Revenue Authority website. Uses the Year of Assessment 2026 resident individual bands.',
-                'changelog' => nl2br(esc_html($release['notes'])),
+                'description' => '<p>Pay As You Earn calculator for the Ghana Revenue Authority website. It uses the Year of Assessment 2026 resident individual bands. The shortcode is <code>[paye_calculator]</code>.</p><p>The calculation runs in the visitor\'s browser. Income figures are not stored and are not sent to the website or to GitHub.</p><p>Official rates: <a href="https://gra.gov.gh/domestic-tax/tax-types/paye/">gra.gov.gh PAYE page</a>.</p>',
+                'installation' => '<ol><li>Install the release zip from the plugin homepage. Do not use the GitHub source-code zip.</li><li>Activate GRA PAYE Calculator.</li><li>Add <code>[paye_calculator]</code> to a page. On the Financity builder, put it in a Text or Shortcode element.</li></ol>',
+                'changelog' => wp_kses_post(wpautop(esc_html($changelog))),
             ),
         );
     }
