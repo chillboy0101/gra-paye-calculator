@@ -783,7 +783,7 @@
    overflow-wrap:break-word;
    hyphens:auto;
    color:#1f2937;
-   border:1px solid #cbd5e1;
+   border:1px solid #cbd5e1 !important;
  }
 
  #gra-paye-calculator .fl-table td{
