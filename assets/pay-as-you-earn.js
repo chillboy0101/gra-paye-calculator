@@ -128,7 +128,7 @@
                         <input id="monthlyIncome" class="gra-input" inputmode="decimal" placeholder="e.g. 7500.00" autocomplete="off" required />
                       </div>
                       <p id="incomeError" class="gra-error" role="alert"><span id="incomeErrorText">Enter the monthly chargeable income.</span></p>
-                      <span id="payeBasisHint" class="gra-hint" style="margin-top: 6px;">Enter chargeable income after SSNIT (5.5% of basic), provident fund (up to 16.5% of basic), qualifying mortgage interest, and donations. Personal reliefs are applied below. Uses the monthly 2026 bands.</span>
+                      <span id="payeBasisHint" class="gra-hint" style="margin-top: 6px;">Enter chargeable income after SSNIT (5.5% of basic), provident fund (up to 16.5% of basic), qualifying mortgage interest, and donations.</span>
                     </div>
 
                     <div class="paye-field-divider"></div>
@@ -588,14 +588,10 @@
     return value.toFixed(2) + '%';
   }
 
-  function updateBasisHint(mode) {
+  function updateBasisHint() {
     if (!payeBasisHintEl) return;
-    const isAnnual = mode && mode.basis === 'annual';
-    const deductionNote =
-      'Enter chargeable income after SSNIT (5.5% of basic), provident fund (up to 16.5% of basic), qualifying mortgage interest, and donations. Personal reliefs are applied below.';
-    payeBasisHintEl.textContent = isAnnual
-      ? deductionNote + ' Uses the annual 2026 bands.'
-      : deductionNote + ' Uses the monthly 2026 bands.';
+    payeBasisHintEl.textContent =
+      'Enter chargeable income after SSNIT (5.5% of basic), provident fund (up to 16.5% of basic), qualifying mortgage interest, and donations.';
   }
 
   function setAnnualMonthlyEquivalentsVisible(isAnnual) {
@@ -1051,7 +1047,7 @@
 
   function applyMode(mode) {
     renderBandsTable(mode);
-    updateBasisHint(mode);
+    updateBasisHint();
     updateIncomeUi(mode);
     updateResultLabels(mode);
     setAnnualMonthlyEquivalentsVisible(mode && mode.basis === 'annual');
