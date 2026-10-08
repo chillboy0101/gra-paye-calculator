@@ -125,7 +125,7 @@
                       <label id="incomeLabel" for="monthlyIncome" class="gra-label">Monthly chargeable income <span aria-hidden="true" style="color: #b91c1c;">*</span></label>
                       <div class="gra-input-wrap" style="margin-top: 6px;">
                         <span class="gra-input-prefix">GH¢</span>
-                        <input id="monthlyIncome" class="gra-input" inputmode="decimal" placeholder="e.g. 7500.00" autocomplete="off" required />
+                        <input id="monthlyIncome" class="gra-input" inputmode="decimal" placeholder="e.g. 7,500.00" autocomplete="off" required />
                       </div>
                       <p id="incomeError" class="gra-error" role="alert"><span id="incomeErrorText">Enter the monthly chargeable income.</span></p>
                       <span id="payeBasisHint" class="gra-hint" style="margin-top: 6px;">Enter chargeable income after SSNIT (5.5% of basic), provident fund (up to 16.5% of basic), qualifying mortgage interest, and donations.</span>
@@ -616,7 +616,7 @@
     }
 
     if (monthlyIncomeInput) {
-      monthlyIncomeInput.placeholder = isAnnual ? 'e.g. 90000.00' : 'e.g. 7500.00';
+      monthlyIncomeInput.placeholder = isAnnual ? 'e.g. 90,000.00' : 'e.g. 7,500.00';
     }
 
     if (incomeErrorTextEl && !incomeError.classList.contains('is-visible')) {
