@@ -685,10 +685,18 @@
    font-weight:600;
  }
 
- #gra-paye-calculator .paye-vat-shell #resetBtn:hover,
- #gra-paye-calculator .paye-vat-shell #breakdownToggleBtn:hover,
+ #gra-paye-calculator .paye-vat-shell #resetBtn:focus,
+ #gra-paye-calculator .paye-vat-shell #breakdownToggleBtn:focus,
  #gra-paye-calculator .paye-vat-shell #resetBtn:focus-visible,
  #gra-paye-calculator .paye-vat-shell #breakdownToggleBtn:focus-visible{
+   outline:none;
+   background:#f3f4f6;
+   border-color:#cbd5e1 !important;
+   color:#111827;
+ }
+
+ #gra-paye-calculator .paye-vat-shell #resetBtn:hover,
+ #gra-paye-calculator .paye-vat-shell #breakdownToggleBtn:hover{
    background:#d9e4f2;
    border-color:#001b48 !important;
    color:#001b48;
