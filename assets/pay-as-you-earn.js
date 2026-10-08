@@ -124,7 +124,7 @@
                     <div class="gra-field">
                       <label id="incomeLabel" for="monthlyIncome" class="gra-label">Monthly chargeable income <span aria-hidden="true" style="color: #b91c1c;">*</span></label>
                       <div class="gra-input-wrap" style="margin-top: 6px;">
-                        <span class="gra-input-prefix">GHS</span>
+                        <span class="gra-input-prefix">GH¢</span>
                         <input id="monthlyIncome" class="gra-input" inputmode="decimal" placeholder="e.g. 7500.00" autocomplete="off" required />
                       </div>
                       <p id="incomeError" class="gra-error" role="alert"><span id="incomeErrorText">Enter the monthly chargeable income.</span></p>
@@ -200,9 +200,9 @@
                             <tr>
                               <th><strong id="breakdownCaption">Band (monthly)</strong></th>
                               <th><strong>Rate (%)</strong></th>
-                              <th><strong>Tax on band (GHS)</strong></th>
-                              <th><strong>Taxable amount (GHS)</strong></th>
-                              <th><strong>Cumulative tax (GHS)</strong></th>
+                              <th><strong>Tax on band (GH¢)</strong></th>
+                              <th><strong>Taxable amount (GH¢)</strong></th>
+                              <th><strong>Cumulative tax (GH¢)</strong></th>
                             </tr>
                           </thead>
                           <tbody id="breakdownBody"></tbody>
@@ -576,7 +576,7 @@
   function formatCurrency(amount) {
     if (!isFinite(amount)) return '';
     return (
-      'GHS ' +
+      'GH¢ ' +
       amount
         .toFixed(2)
         .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
