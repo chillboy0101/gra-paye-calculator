@@ -97,7 +97,7 @@
       mount.innerHTML = `
         <div class="gra-main-panel paye-vat-shell">
           <div class="paye-vat-header">
-            <h5>PAY AS YOU EARN</h5>
+            <h5>PAY AS YOU EARN Calculator</h5>
           </div>
           <div class="paye-vat-body">
             <div class="paye-vat-grid" style="display: block;">
