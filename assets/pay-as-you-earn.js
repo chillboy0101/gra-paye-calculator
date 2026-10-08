@@ -787,23 +787,23 @@
 
       const colBand = document.createElement('td');
       if (r.isExcess) {
-        colBand.textContent = 'Exceeding ' + formatter.format(cumulativeLimit);
+        colBand.innerHTML = '<strong>Exceeding ' + formatter.format(cumulativeLimit) + '</strong>';
       } else {
         const labelPrefix = r.index === 0 ? 'First ' : 'Next ';
-        colBand.textContent = labelPrefix + formatter.format(bands[r.index].amount);
+        colBand.innerHTML = '<strong>' + labelPrefix + formatter.format(bands[r.index].amount) + '</strong>';
       }
 
       const colRate = document.createElement('td');
-      colRate.textContent = String(r.rate);
+      colRate.innerHTML = '<strong>' + String(r.rate) + '</strong>';
 
       const colTax = document.createElement('td');
-      colTax.textContent = formatter.format(r.taxOnBand);
+      colTax.innerHTML = '<strong>' + formatter.format(r.taxOnBand) + '</strong>';
 
       const colTaxable = document.createElement('td');
-      colTaxable.textContent = formatter.format(r.taxableAmount);
+      colTaxable.innerHTML = '<strong>' + formatter.format(r.taxableAmount) + '</strong>';
 
       const colCumTax = document.createElement('td');
-      colCumTax.textContent = formatter.format(r.cumulativeTax);
+      colCumTax.innerHTML = '<strong>' + formatter.format(r.cumulativeTax) + '</strong>';
 
       rowEl.appendChild(colBand);
       rowEl.appendChild(colRate);
