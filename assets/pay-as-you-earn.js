@@ -237,27 +237,6 @@
             </div>
           </div>
 
-          <div id="paye-modal" class="gra-modal-backdrop">
-            <div class="gra-modal" role="dialog" aria-modal="true">
-              <div class="gra-modal-title">gra.gov.gh says</div>
-              <div class="gra-modal-body">
-                The use of the Tax Calculators only serves as a guideline.
-                <br /><br />
-                The actual tax payable by you or deduction available to you (if any)
-                will depend on your personal circumstances.
-                <br /><br />
-                It is advised that for filing of returns and for making formal
-                financial decisions, the exact calculation be made as per the
-                provisions contained in the relevant Acts, and Laws.
-                <br /><br />
-                Click OK to proceed
-              </div>
-              <div class="gra-modal-actions">
-                <button type="button" id="paye-modal-cancel" class="gra-modal-btn gra-modal-btn-secondary">Cancel</button>
-                <button type="button" id="paye-modal-ok" class="gra-modal-btn">OK</button>
-              </div>
-            </div>
-          </div>
         </div>
       `;
 
@@ -371,10 +350,6 @@
   const breakdownCaptionEl = document.getElementById('breakdownCaption');
   const breakdownBodyEl = document.getElementById('breakdownBody');
   const breakdownToggleBtn = document.getElementById('breakdownToggleBtn');
-
-  const modal = document.getElementById('paye-modal');
-  const modalOk = document.getElementById('paye-modal-ok');
-  const modalCancel = document.getElementById('paye-modal-cancel');
 
   const payeTypeEmployeeMonthlyRadio = document.getElementById('payeTypeEmployeeMonthly');
   const payeTypeEmployeeAnnualRadio = document.getElementById('payeTypeEmployeeAnnual');
@@ -939,20 +914,6 @@
     if (resultTaxableEl) resultTaxableEl.textContent = '';
   }
 
-  function showModal() {
-    if (modal) {
-      modal.classList.remove('is-hidden');
-      modal.classList.add('is-visible');
-    }
-  }
-
-  function hideModal() {
-    if (modal) {
-      modal.classList.remove('is-visible');
-      modal.classList.add('is-hidden');
-    }
-  }
-
   function runSelfTest() {
     if (!window || !window.location) return;
     const params = new URLSearchParams(window.location.search || '');
@@ -1061,14 +1022,6 @@
     breakdownToggleBtn.addEventListener('click', toggleBreakdown);
   }
 
-  if (modalOk) {
-    modalOk.addEventListener('click', hideModal);
-  }
-
-  if (modalCancel) {
-    modalCancel.addEventListener('click', hideModal);
-  }
-
   function applyMode(mode) {
     renderBandsTable(mode);
     updateBasisHint(mode);
@@ -1093,8 +1046,6 @@
 
   wireModeRadio(payeTypeEmployeeMonthlyRadio);
   wireModeRadio(payeTypeEmployeeAnnualRadio);
-
-  showModal();
   }
 
   if (document.readyState === 'loading') {

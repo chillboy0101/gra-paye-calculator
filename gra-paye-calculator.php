@@ -3,7 +3,7 @@
  * Plugin Name: GRA PAYE Calculator
  * Plugin URI: https://github.com/chillboy0101/gra-paye-calculator
  * Description: Pay As You Earn calculator for the Ghana Revenue Authority website. Uses the Year of Assessment 2026 resident individual bands.
- * Version: 1.0.9
+ * Version: 1.0.10
  * Author: GRA IT Department
  * Author URI: https://gra.gov.gh
  * License: GPL v2 or later
@@ -22,7 +22,7 @@ require_once __DIR__ . '/includes/class-github-updater.php';
 
 class GRA_PAYE_Calculator {
 
-    const VERSION = '1.0.9';
+    const VERSION = '1.0.10';
     const SHORTCODE = 'paye_calculator';
 
     public function __construct() {
