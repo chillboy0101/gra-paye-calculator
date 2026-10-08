@@ -125,7 +125,7 @@
                       <label id="incomeLabel" for="monthlyIncome" class="gra-label">Monthly chargeable income <span aria-hidden="true" style="color: #b91c1c;">*</span></label>
                       <div class="gra-input-wrap" style="margin-top: 6px;">
                         <span class="gra-input-prefix">GHS</span>
-                        <input id="monthlyIncome" type="number" min="0" step="0.01" class="gra-input" placeholder="e.g. 7500.00" autocomplete="off" required />
+                        <input id="monthlyIncome" class="gra-input" inputmode="decimal" placeholder="e.g. 7500.00" autocomplete="off" required />
                       </div>
                       <p id="incomeError" class="gra-error" role="alert"><span id="incomeErrorText">Enter the monthly chargeable income.</span></p>
                       <span id="payeBasisHint" class="gra-hint" style="margin-top: 6px;">Enter chargeable income after SSNIT (5.5% of basic), provident fund (up to 16.5% of basic), qualifying mortgage interest, and donations. Personal reliefs are applied below. Uses the monthly 2026 bands.</span>
@@ -159,7 +159,7 @@
                           <span class="gra-hint">GH¢600 per child per year (max 3)</span>
                           <div class="gra-input-wrap" style="margin-top: 6px;">
                             <span class="gra-input-prefix">No.</span>
-                            <input id="reliefChildrenCount" type="number" min="0" max="3" step="1" class="gra-input" value="0" />
+                            <input id="reliefChildrenCount" class="gra-input" inputmode="numeric" autocomplete="off" value="0" />
                           </div>
                         </div>
 
@@ -168,7 +168,7 @@
                           <span class="gra-hint">GH¢1,000 per relative per year (max 2)</span>
                           <div class="gra-input-wrap" style="margin-top: 6px;">
                             <span class="gra-input-prefix">No.</span>
-                            <input id="reliefDependentsCount" type="number" min="0" max="2" step="1" class="gra-input" value="0" />
+                            <input id="reliefDependentsCount" class="gra-input" inputmode="numeric" autocomplete="off" value="0" />
                           </div>
                         </div>
                       </div>
@@ -865,7 +865,7 @@
 
     const modeForError = resolvePayeMode();
     const isAnnualInput = modeForError.basis === 'annual';
-    const rawIncome = String(monthlyIncomeInput.value == null ? '' : monthlyIncomeInput.value).trim();
+    const rawIncome = String(monthlyIncomeInput.value == null ? '' : monthlyIncomeInput.value).replace(/,/g, '').trim();
 
     if (!rawIncome) {
       showIncomeError(isAnnualInput ? 'Enter the annual chargeable income.' : 'Enter the monthly chargeable income.');
@@ -1017,7 +1017,8 @@
 
   if (monthlyIncomeInput) {
     monthlyIncomeInput.addEventListener('input', function () {
-      const raw = String(this.value);
+      const raw = String(this.value).replace(/,/g, '');
+      if (raw !== String(this.value)) this.value = raw;
       if (!raw.includes('.')) return;
 
       const parts = raw.split('.');
@@ -1033,7 +1034,7 @@
     });
 
     monthlyIncomeInput.addEventListener('blur', function () {
-      const raw = String(this.value).trim();
+      const raw = String(this.value).replace(/,/g, '').trim();
       if (raw === '') return;
       const num = Number(raw);
       if (!isFinite(num)) return;
