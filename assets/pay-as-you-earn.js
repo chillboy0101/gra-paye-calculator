@@ -1038,9 +1038,11 @@
   function wireModeRadio(radio) {
     if (!radio) return;
     radio.addEventListener('change', function () {
-      if (this.checked) {
-        applyMode(resolvePayeMode());
-      }
+      if (!this.checked) return;
+      monthlyIncomeInput.value = '';
+      incomeError.classList.remove('is-visible');
+      if (resultsSection) resultsSection.classList.add('is-hidden');
+      applyMode(resolvePayeMode());
     });
   }
 
