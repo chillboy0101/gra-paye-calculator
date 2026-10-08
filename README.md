@@ -85,10 +85,10 @@ Before you publish a release, open the zip and confirm it contains `gra-paye-cal
 
 ## Publish a new version
 
-1. Change both `Version:` and `const VERSION` in `gra-paye-calculator.php` to the same new number, such as `1.0.14`.
+1. Change both `Version:` and `const VERSION` in `gra-paye-calculator.php` to the same new number, such as `1.0.15`.
 2. From this folder, run `bash build-zip.sh`. It writes `dist/gra-paye-calculator.zip` and refuses to include `.git`.
 3. Commit the version change and push it to `main`.
-4. Create a GitHub release. The tag must be `v` plus the version, for example `v1.0.14`.
+4. Create a GitHub release. The tag must be `v` plus the version, for example `v1.0.15`.
 5. Attach the zip. Its file name must stay `gra-paye-calculator.zip`.
 6. On a site that has the plugin, open Plugins and use Check again if the update is not listed yet. The check is cached for 30 minutes.
 
