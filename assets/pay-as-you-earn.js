@@ -154,7 +154,7 @@
                           <span style="font-size: 17px; color: #374151; line-height: 1.6;">Disability relief (25% of income)</span>
                         </label>
 
-                        <div class="gra-field" style="gap: 6px;">
+                        <div class="gra-field" style="gap: 6px; margin-top: 14px;">
                           <label class="gra-label" for="reliefChildrenCount" style="font-weight: 500;">Child education relief</label>
                           <span class="gra-hint">GH¢600 per child per year (max 3)</span>
                           <div class="gra-input-wrap" style="margin-top: 6px;">
