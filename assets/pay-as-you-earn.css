@@ -1,4 +1,9 @@
 #gra-paye-calculator{
+  max-width:780px;
+  margin:0 auto;
+}
+
+#gra-paye-calculator{
   --gra-navy:#001b48;
   --gra-gold:#f4b000;
   --gra-light:#f4f6fb;
