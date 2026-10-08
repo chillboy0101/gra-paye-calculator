@@ -18,6 +18,8 @@ Maintainer: Carl Quist (https://github.com/chillboy0101)
 
 Official rates: https://gra.gov.gh/domestic-tax/tax-types/paye/
 
+The PAYE page is https://gra.gov.gh/domestic-tax/tax-types/paye/. The slices in `assets/pay-as-you-earn.js` match that Year of Assessment 2026 table.
+
 ## What a visitor can do
 
 The form has two modes.
