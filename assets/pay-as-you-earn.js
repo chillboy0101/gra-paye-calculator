@@ -103,7 +103,7 @@
             <div class="paye-vat-grid" style="display: block;">
               <div class="paye-vat-col" style="margin: 0 auto 40px;">
                 <div class="paye-vat-card">
-                  <div class="paye-vat-section-title">Chargeable Income</div>
+                  <div class="paye-vat-section-title">Income and reliefs</div>
                   <form id="paye-form" novalidate>
                     <div class="gra-field">
                       <label class="gra-label">PAYE type</label>
@@ -127,7 +127,7 @@
                         <span class="gra-input-prefix">GHS</span>
                         <input id="monthlyIncome" type="number" min="0" step="0.01" class="gra-input" placeholder="e.g. 7500.00" autocomplete="off" required />
                       </div>
-                      <p id="incomeError" class="gra-error"><span id="incomeErrorText">Please enter a valid monthly amount greater than zero.</span></p>
+                      <p id="incomeError" class="gra-error" role="alert"><span id="incomeErrorText">Enter the monthly chargeable income.</span></p>
                       <span id="payeBasisHint" class="gra-hint" style="margin-top: 6px;">Enter chargeable income after SSNIT (5.5% of basic), provident fund (up to 16.5% of basic), qualifying mortgage interest, and donations. Personal reliefs are applied below. Uses the monthly 2026 bands.</span>
                     </div>
 
@@ -623,10 +623,10 @@
       monthlyIncomeInput.placeholder = isAnnual ? 'e.g. 90000.00' : 'e.g. 7500.00';
     }
 
-    if (incomeErrorTextEl) {
+    if (incomeErrorTextEl && !incomeError.classList.contains('is-visible')) {
       incomeErrorTextEl.textContent = isAnnual
-        ? 'Please enter a valid annual amount greater than zero.'
-        : 'Please enter a valid monthly amount greater than zero.';
+        ? 'Enter the annual chargeable income.'
+        : 'Enter the monthly chargeable income.';
     }
   }
 
@@ -845,20 +845,46 @@
     }
   }
 
+  function showIncomeError(message) {
+    if (incomeErrorTextEl) incomeErrorTextEl.textContent = message;
+    incomeError.classList.add('is-visible');
+    monthlyIncomeInput.setAttribute('aria-invalid', 'true');
+    resultsSection.classList.add('is-hidden');
+    resetBreakdownUi();
+    setAnnualMonthlyEquivalentsVisible(false);
+    monthlyIncomeInput.focus();
+  }
+
+  function clearIncomeError() {
+    incomeError.classList.remove('is-visible');
+    monthlyIncomeInput.removeAttribute('aria-invalid');
+  }
+
   function handleCalculate(event) {
     event.preventDefault();
 
-    const inputValue = parseFloat(monthlyIncomeInput.value);
+    const modeForError = resolvePayeMode();
+    const isAnnualInput = modeForError.basis === 'annual';
+    const rawIncome = String(monthlyIncomeInput.value == null ? '' : monthlyIncomeInput.value).trim();
 
-    if (!inputValue || inputValue <= 0) {
-      incomeError.classList.add('is-visible');
-      resultsSection.classList.add('is-hidden');
-      resetBreakdownUi();
-      setAnnualMonthlyEquivalentsVisible(false);
+    if (!rawIncome) {
+      showIncomeError(isAnnualInput ? 'Enter the annual chargeable income.' : 'Enter the monthly chargeable income.');
       return;
     }
 
-    incomeError.classList.remove('is-visible');
+    const inputValue = parseFloat(rawIncome);
+
+    if (!isFinite(inputValue)) {
+      showIncomeError('Enter a number, such as 7500.00.');
+      return;
+    }
+
+    if (inputValue <= 0) {
+      showIncomeError('Enter an amount greater than zero.');
+      return;
+    }
+
+    clearIncomeError();
 
     const mode = resolvePayeMode();
     const isAnnual = mode.basis === 'annual';
@@ -905,7 +931,7 @@
     if (reliefDisabilityEl) reliefDisabilityEl.checked = false;
     if (reliefChildrenCountEl) reliefChildrenCountEl.value = '0';
     if (reliefDependentsCountEl) reliefDependentsCountEl.value = '0';
-    incomeError.classList.remove('is-visible');
+    clearIncomeError();
     resultsSection.classList.add('is-hidden');
     resetBreakdownUi();
     setAnnualMonthlyEquivalentsVisible(false);
@@ -1040,7 +1066,7 @@
     radio.addEventListener('change', function () {
       if (!this.checked) return;
       monthlyIncomeInput.value = '';
-      incomeError.classList.remove('is-visible');
+      clearIncomeError();
       if (resultsSection) resultsSection.classList.add('is-hidden');
       applyMode(resolvePayeMode());
     });

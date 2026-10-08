@@ -297,7 +297,7 @@
   line-height:1.5;
 }
 
-#gra-paye-calculator .paye-vat-card .gra-error{font-size:14px;}
+#gra-paye-calculator .paye-vat-card .gra-error{font-size:16px;}
 
 #gra-paye-calculator .paye-vat-card .paye-result-label{
   font-size:17px;
@@ -613,8 +613,12 @@
 #gra-paye-calculator .gra-error{
   display:none;
   margin-top:8px;
-  font-size:12px;
+  font-size:16px;
   color:#b91c1c;
+}
+
+#gra-paye-calculator .gra-input-wrap:has(.gra-input[aria-invalid="true"]){
+  box-shadow:inset 0 0 0 1px #b91c1c;
 }
 
 #gra-paye-calculator .gra-error.is-visible{display:block;}
